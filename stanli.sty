@@ -593,6 +593,15 @@
           \end{scope}
           \global\STNL@ValidCommandTypeOptiontrue
 	}{}
+	% Floating bearing with one rollers
+	\ifthenelse{\equal{#1}{7}}{		
+		\begin{scope}[rotate around={#3:(#2)}] 
+			\draw [normalLine] ($(#2)-(0,\supportHeight/2)$) circle [radius=\supportHeight/2];
+			\draw [normalLine] ($(#2)+1*(\supportBasicLength/2,-\supportHeight)$) -- ++(-\supportBasicLength,0);
+			\clip ($(#2)+1*(-\supportBasicLength/2,-\supportBasicHeight-\supportHeight-\supportGap)$) rectangle ($(#2)+1*(\supportBasicLength/2,-\supportHeight-\supportGap)$);
+			\draw[hatching]($(#2)+1*(\supportHatchingLength/2,-\supportHatchingHeight-\supportGap)$) -- ++(-\supportHatchingLength,0);  
+		\end{scope}
+	}{}
         \ifthenelse{\boolean{STNL@ValidCommandTypeOption}}{}{\errmessage{stanli::support: Bad type: #1}\errorstopmode}
 }
 
